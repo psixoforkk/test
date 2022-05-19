@@ -22,6 +22,7 @@ int include();
 int InputTextOut(const char*);
 void Offai(int, char);
 void record(int, float);
+void results();
 
 
 int main()
@@ -49,11 +50,24 @@ int main()
     return 0;
 }
 
+void results (){
+	FILE *f;
+	char p[1024];
+	f=fopen ("record.txt","rb");
+	int i=0;
+	while (fread(p+i,sizeof(char),1,f))
+	{ 
+		printf("%c", p[i]);
+		i++;
+	}
+	fclose(f);
+}
+
 void record (int ohib, float time){
 	FILE *f;
 	f = fopen("record.txt", "a");
 	fprintf(f, "ohib = %d time = %f\n", ohib, time);
-	//fclose(f);
+	fclose(f);
 }
 
 void Offai(int color, char symbol) {
@@ -185,8 +199,9 @@ void ChooseDifficulty() {
 }
 
 void Results() {
-    //printf("\033[2J\033[1;1H");
-    printf("\nres\n");
+    printf("\033[2J\033[1;1H");
+    //printf("\nres\n");
+    results ();
 }
 
 int ShowMenu() {
