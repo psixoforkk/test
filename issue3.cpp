@@ -71,8 +71,9 @@ void InputTextOut(const char text_array[]) {
                 if (sym == '0') {
                     break;
                 }
-                if (text_array[i - 1] == '.' || text_array[i - 1] == '?' || text_array[i - 1] == '!') {
+                if (sym == '.' || sym == '?' || sym == '!') {
                     printf("\n ");
+                    i++;
                 }
         }
         printf("\n");
