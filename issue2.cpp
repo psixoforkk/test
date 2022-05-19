@@ -105,4 +105,3 @@ int ShowMenu() {
     //printf("\e[0m");
     return mode;
 }
-
