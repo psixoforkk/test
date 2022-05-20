@@ -3,7 +3,7 @@
 void FileRead(FILE* input_file, int output_line, char text_array[], int checkfile) {
 	int i = 0;
         if (checkfile){
-	        while (fgets(text_array, 100, input_file)) {
+	        while (fgets(text_array, 512, input_file)) {
 		    if (i == output_line) {
 			    break;
 		    }
