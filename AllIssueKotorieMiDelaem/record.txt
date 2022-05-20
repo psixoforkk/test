@@ -1,0 +1,17 @@
+ohib = 19 time = 0.004906
+ohib = 0 time = 0.000262
+ohib = 5 time = 0.000830
+ohib = 1 time = 0.000720
+ohib = 0 time = 0.000187
+ohib = 0 time = 0.000092
+ohib = 0 time = 0.000094
+ohib = 0 time = 0.000120
+ohib = 1 time = 0.000189
+ohib = 0 time = 0.000082
+ohib = 3 time = 0.000204
+ohib = 0 time = 0.000111
+ohib = 3 time = 0.000265
+ohib = 0 time = 0.000060
+ohib = 0 time = 0.000856
+ohib = 0 time = 0.000087
+ohib = 0 time = 0.000387
