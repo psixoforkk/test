@@ -36,9 +36,9 @@ void Start() {
     memset(text_array, 0, sizeof(text_array));
     input_file = FileOpen("easyway.txt");
     int i = FileCheck(input_file);
-    printf("%d\n", i);
-    FileRead(input_file, 2, text_array);
-    printf("%s", text_array);
+    FileRead(input_file, 2, text_array, i);
+    TextOut(text_array);
+    InputTextOut(text_array);
 }
 
 void ChooseDifficulty() {
