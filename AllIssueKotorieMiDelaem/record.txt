@@ -23,3 +23,14 @@ ohib = 0 time = 0.000759
 ohib = 0 time = 0.000188
 ohib = 0 time = 0.000101
 ohib = 0 time = 0.000129
+ohib = 0 time = 0.000110
+ohib = 7 time = 0.002666
+ohib = 3 time = 0.001267
+ohib = 0 time = 0.000045
+ohib = 82 time = 0.006189
+ohib = 95 time = 0.013681
+ohib = 111 time = 0.006440
+ohib = 73 time = 0.004705
+ohib = 39 time = 0.005925
+ohib = 0 time = 0.000036
+ohib = 12 time = 0.004145

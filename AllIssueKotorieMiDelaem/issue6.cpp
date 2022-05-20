@@ -17,7 +17,7 @@ void Results();
 void FileRead(FILE*, int, char*);
 FILE* FileOpen(const char*);
 int FileCheck(FILE*);
-void TextOut(const char*);
+void TextOut(const char*, int);
 int Rand_Row(FILE*, char);
 int include();
 int InputTextOut(const char*);
@@ -88,8 +88,10 @@ int InputTextOut(const char text_array[]) {
         //sym = include();
         for (long unsigned int i = 0; i < strlen(text_array) - 1;) 
         {
+                int flag = 0;
                 sym = include();
                 if (sym == text_array[i]) {
+                        flag = 1;
                         Offai(42, sym);
                         i++;
                 }
@@ -102,7 +104,7 @@ int InputTextOut(const char text_array[]) {
 		    ohib--;
                     break;
                 }
-                if (sym == '.' || sym == '?' || sym == '!') {
+                if ((sym == '.' || sym == '?' || sym == '!') && flag != 0) {
 		   printf("\n ");
                    i++;
                 }
@@ -127,13 +129,31 @@ int include()
         return (ch);
 }
 
-void TextOut(const char text_array[]) {
+void TextOut(const char text_array[], int knopka) {
     printf("\033[2J\033[1;1H ");
-    for (long unsigned int i = 0; i < strlen(text_array); i++) {
-        printf("%c", text_array[i]);
-        if (text_array[i] == '.' || text_array[i] == '?' || text_array[i] == '!') {
-            printf("\n");
+    if ( knopka == 3) {
+        for (long unsigned int i = 0; i < strlen(text_array); i++) {
+            printf("%c", text_array[i]);
+            if (text_array[i] == '.' || text_array[i] == '?' || text_array[i] == '!') {
+                printf("\n");
+            }
         }
+    }
+    int flag = 0;
+    int count = 0;
+    if ( knopka != 3) {
+         for (long unsigned int i = 0; i < strlen(text_array); i++) {
+            printf("%c", text_array[i]);
+            count++;
+            if (count > 20) {
+                count = 0;
+                flag = 1;
+            }
+            if (flag == 1 && text_array[i] == ' ') {
+                flag = 0;
+                printf("\n ");
+            }
+	 }
     }
     //printf("%s", text_array);
 }
@@ -192,9 +212,19 @@ float Start(int dif) {
     printf("\nPress any key to start\n");
     include();
     const char* Nfile;
-    if (dif == 1) Nfile = "easyway.txt";
-    if (dif == 2) Nfile = "Normal.txt";
-    if (dif == 3) Nfile = "Hard.txt";
+    int knopka = 0;
+    if (dif == 1) {
+       Nfile = "easyway.txt";
+       knopka = 1;
+    }
+    if (dif == 2) {
+       Nfile = "Normal.txt";
+       knopka = 2;
+    }
+    if (dif == 3) {
+       Nfile = "Hard.txt";
+       knopka = 3;
+    }
     int ohib;
     float time;
     clock_t naz, konz; 
@@ -205,7 +235,7 @@ float Start(int dif) {
     int number_row = Rand_Row(input_file, text_array);
     rewind(input_file);
     FileRead(input_file, number_row, text_array);
-    TextOut(text_array);
+    TextOut(text_array, knopka);
     naz = clock();
     ohib = InputTextOut(text_array);
     printf("ohib=%d  ",ohib);
