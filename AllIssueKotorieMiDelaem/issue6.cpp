@@ -18,6 +18,7 @@ void FileRead(FILE*, int, char*);
 FILE* FileOpen(const char*);
 int FileCheck(FILE*);
 void TextOut(const char*);
+int Rand_Row(FILE*, char);
 int include();
 int InputTextOut(const char*);
 void Offai(int, char);
@@ -146,7 +147,13 @@ void FileRead(FILE* input_file, int output_line, char text_array[]) {
 		i++;
 	}
 }
-
+int Rand_Row(FILE* input_file, char text_array[]) {
+	int i = 0;
+	while (fgets(text_array, 512, input_file)) {
+		i++;
+	}
+	return rand()%i;
+}
 int FileCheck(FILE* input_file) { 
 	if (input_file) {
 		return 1;
@@ -191,13 +198,15 @@ float Start(int dif) {
     int ohib;
     float time;
     clock_t naz, konz; 
-    naz = clock();
     FILE *input_file;
     char text_array[512];
     memset(text_array, 0, sizeof(text_array));
     input_file = FileOpen(Nfile);
-    FileRead(input_file, 0, text_array);
+    int number_row = Rand_Row(input_file, text_array);
+    rewind(input_file);
+    FileRead(input_file, number_row, text_array);
     TextOut(text_array);
+    naz = clock();
     ohib = InputTextOut(text_array);
     printf("ohib=%d  ",ohib);
     konz = clock();
