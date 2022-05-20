@@ -1,16 +1,21 @@
 #pragma once
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <termios.h>
 #include <unistd.h>
+#include <time.h> 
 
 #define array_size 10
 
 void FileRead(FILE*, int, char*, int);
 FILE* FileOpen(const char*);
 int FileCheck(FILE*);
-void TextOut(const char*);
+void TextOut(const char*, int);
+int Rand_Row(FILE*, char*);
 int include();
-void InputTextOut(const char*);
+int InputTextOut(const char*);
 void Offai(int, char);
+void record(int, float);
+void results();

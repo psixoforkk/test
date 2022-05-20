@@ -1,8 +1,8 @@
 #pragma once
 
 int ShowMenu();
-void MenuLogic(int);
-void SwitchMode(int);
-void Start();
-void ChooseDifficulty();
+void MenuLogic(int, int);
+int SwitchMode(int, int);
+float Start(int);
+int ChooseDifficulty();
 void Results();

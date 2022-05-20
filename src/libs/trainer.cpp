@@ -12,6 +12,14 @@ void FileRead(FILE* input_file, int output_line, char text_array[], int checkfil
         }
 }
 
+int Rand_Row(FILE* input_file, char text_array[]) {
+	int i = 0;
+	while (fgets(text_array, 512, input_file)) {
+		i++;
+	}
+	return rand()%i;
+}
+
 int FileCheck(FILE* input_file) { 
 	if (input_file) {
 		return 1;
@@ -32,8 +40,9 @@ void Offai(int color, char symbol) {
        printf("\e[0m");
 }
 
-void InputTextOut(const char text_array[]) {
+int InputTextOut(const char text_array[]) {
         char sym;
+	int ohib=0;
         printf("\n ");
         //sym = include();
         for (long unsigned int i = 0; i < strlen(text_array) - 1;) 
@@ -46,17 +55,19 @@ void InputTextOut(const char text_array[]) {
                 else {
                     Offai(41, sym);
                     printf("\b");
+		    ohib++;
                 }
                 if (sym == '0') {
+		    ohib--;
                     break;
                 }
                 if (sym == '.' || sym == '?' || sym == '!') {
-                    printf("\n ");
-                    i++;
+		   printf("\n ");
+                   i++;
                 }
         }
         printf("\n");
-        return;
+        return ohib;
 }
 
 int include()
@@ -75,13 +86,51 @@ int include()
         return (ch);
 }
 
-void TextOut(const char text_array[]) {
+void TextOut(const char text_array[], int knopka) {
     printf("\033[2J\033[1;1H ");
-    for (long unsigned int i = 0; i < strlen(text_array); i++) {
-        printf("%c", text_array[i]);
-        if (text_array[i] == '.' || text_array[i] == '?' || text_array[i] == '!') {
-            printf("\n");
+    if ( knopka == 3) {
+        for (long unsigned int i = 0; i < strlen(text_array); i++) {
+            printf("%c", text_array[i]);
+            if (text_array[i] == '.' || text_array[i] == '?' || text_array[i] == '!') {
+                printf("\n");
+            }
         }
     }
+    int flag = 0;
+    int count = 0;
+    if ( knopka != 3) {
+         for (long unsigned int i = 0; i < strlen(text_array); i++) {
+            printf("%c", text_array[i]);
+            count++;
+            if (count > 20) {
+                count = 0;
+                flag = 1;
+            }
+            if (flag == 1 && text_array[i] == ' ') {
+                flag = 0;
+                printf("\n ");
+            }
+	 }
+    }
     //printf("%s", text_array);
+}
+
+void results (){
+	FILE *f;
+	char p[1024];
+	f=fopen ("record.txt","rb");
+	int i=0;
+	while (fread(p+i,sizeof(char),1,f))
+	{ 
+		printf("%c", p[i]);
+		i++;
+	}
+	fclose(f);
+}
+
+void record (int ohib, float time){
+	FILE *f;
+	f = fopen("record.txt", "a");
+	fprintf(f, "ohib = %d time = %f\n", ohib, time);
+	fclose(f);
 }

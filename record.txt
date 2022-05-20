@@ -1,0 +1,3 @@
+ohib = 4 time = 0.000300
+ohib = 2 time = 0.000472
+ohib = 0 time = 0.000028
