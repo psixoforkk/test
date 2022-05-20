@@ -188,7 +188,7 @@ FILE* FileOpen(const char* file_name) {
 	return input_file;
 }
 
-int Switch(int mode, int dif) {
+int govno(int mode, int dif) {
     int umom = 0;
     switch(mode) {
     case 1:

@@ -18,4 +18,6 @@ int include();
 int InputTextOut(const char*);
 void Offai(int, char);
 void record(int, float);
+int Sravnenie(char, char);
 void results();
+int Sravnenie(char,char);

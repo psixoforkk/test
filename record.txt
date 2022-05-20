@@ -1,3 +1,12 @@
 ohib = 4 time = 0.000300
 ohib = 2 time = 0.000472
 ohib = 0 time = 0.000028
+ohib = 0 time = 0.000073
+ohib = 0 time = 0.000077
+ohib = 21 time = 0.002480
+ohib = 65 time = 0.004811
+ohib = 38 time = 0.002525
+ohib = 4 time = 0.000310
+ohib = 5 time = 0.001084
+ohib = 0 time = 0.000071
+ohib = 0 time = 0.000063

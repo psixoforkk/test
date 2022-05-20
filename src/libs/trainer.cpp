@@ -39,7 +39,16 @@ void Offai(int color, char symbol) {
        printf("%c", symbol);
        printf("\e[0m");
 }
-
+int Sravnenie(char sym1, char sym2) {
+    int res = 0;
+    if (sym1 == sym2) {
+        res = 1;
+    }
+    else {
+        res = 0;
+    }
+    return res;
+}
 int InputTextOut(const char text_array[]) {
         char sym;
 	int ohib=0;
@@ -47,8 +56,10 @@ int InputTextOut(const char text_array[]) {
         //sym = include();
         for (long unsigned int i = 0; i < strlen(text_array) - 1;) 
         {
+                int flag = 0;
                 sym = include();
-                if (sym == text_array[i]) {
+                if (Sravnenie(sym, text_array[i])) {
+                        flag = 1;
                         Offai(42, sym);
                         i++;
                 }
@@ -61,7 +72,7 @@ int InputTextOut(const char text_array[]) {
 		    ohib--;
                     break;
                 }
-                if (sym == '.' || sym == '?' || sym == '!') {
+                if ((sym == '.' || sym == '?' || sym == '!') && flag != 0) {
 		   printf("\n ");
                    i++;
                 }

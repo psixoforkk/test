@@ -85,6 +85,9 @@ int ChooseDifficulty() {
     printf("3. Hard\n");
     printf("4. Exit\n");
     scanf("%d", &mode);
+    while ( mode > 4 || mode < 0) {
+	 scanf("%d", &mode);  
+    }
     return mode;
 }
 
@@ -95,7 +98,7 @@ void Results() {
 }
 
 int ShowMenu() {
-    int mode = 0;
+    int mode;
     //printf("\E[42m");
     printf("1. Start\n");
     printf("2. Choose difficulty\n");
