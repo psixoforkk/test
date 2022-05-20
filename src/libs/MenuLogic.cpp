@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "MenuLogic.h"
-
+#include "trainer.h"
 void MenuLogic(int mode) {
     while (1) {
-        printf("\033[2J\033[1;1H");
+        //printf("\033[2J\033[1;1H");
         mode = ShowMenu();
         SwitchMode(mode);
         if (mode == 4) {
@@ -31,6 +31,14 @@ void SwitchMode(int mode) {
 
 void Start() {
     printf("\033[2J\033[1;1H");
+    FILE *input_file;
+    char text_array[100];
+    memset(text_array, 0, sizeof(text_array));
+    input_file = FileOpen("easyway.txt");
+    int i = FileCheck(input_file);
+    printf("%d\n", i);
+    FileRead(input_file, 2, text_array);
+    printf("%s", text_array);
 }
 
 void ChooseDifficulty() {
