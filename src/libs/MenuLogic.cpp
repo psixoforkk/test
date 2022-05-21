@@ -22,7 +22,7 @@ int SwitchMode(int mode, int dif) {
     int umom = 0;
     switch(mode) {
     case 1:
-        printf("time= %f\n",Start(dif));
+        printf("time= %d\n",Start(dif));
         break;
     case 2:
         umom = ChooseDifficulty();
@@ -38,7 +38,7 @@ int SwitchMode(int mode, int dif) {
     return umom;
 }
 
-float Start(int dif) {
+int Start(int dif) {
     printf("\nPress any key to start\n");
     include();
     const char* Nfile;
@@ -56,8 +56,8 @@ float Start(int dif) {
        knopka = 3;
     }
     int ohib;
-    float time;
-    clock_t naz, konz; 
+    float time1;
+    time_t naz, konz; 
     FILE *input_file;
     char text_array[512];
     memset(text_array, 0, sizeof(text_array));
@@ -67,13 +67,13 @@ float Start(int dif) {
     rewind(input_file);
     FileRead(input_file, number_row, text_array, i);
     TextOut(text_array, knopka);
-    naz = clock();
+    naz = time(NULL);
     ohib = InputTextOut(text_array);
-    konz = clock();
-    time = (float)(konz - naz)/CLOCKS_PER_SEC;
+    konz = time(NULL);
+    time1 = difftime(konz, naz);
     printf("ohib=%d  ",ohib);
-    record(ohib, time);
-    return time; 
+    record(ohib, time1);
+    return time1;
 }
 
 
