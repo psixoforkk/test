@@ -11,7 +11,7 @@ void MenuLogic(int mode, int dif) {
             break;
         }
         dif = SwitchMode(mode, dif);
-	if (dif == 0) {
+	if (dif == 0 || dif == 4) {
 	    dif = 1;	
 	}
 	printf("Level of dif %d\n", dif);
@@ -19,60 +19,59 @@ void MenuLogic(int mode, int dif) {
 }
 
 int SwitchMode(int mode, int dif) {
-    int umom = 0;
+    int dif_level = 0;
     switch(mode) {
     case 1:
         printf("time= %d\n",Start(dif));
         break;
     case 2:
-        umom = ChooseDifficulty();
-	if ( umom >= 4 || umom < 0) umom = 0;
+        dif_level = ChooseDifficulty();
         break;
     case 3:
         Results();
         break;
     case 4:
-        umom = 0;
+        dif_level = 0;
 	break;
     }
-    return umom;
+    return dif_level;
 }
 
 int Start(int dif) {
     printf("\nPress any key to start\n");
     include();
     const char* Nfile;
-    int knopka = 0;
+    int button = 0;
     if (dif == 1) {
        Nfile = "easyway.txt";
-       knopka = 1;
+       button = 1;
     }
     if (dif == 2) {
        Nfile = "Normal.txt";
-       knopka = 2;
+       button = 2;
     }
     if (dif == 3) {
        Nfile = "Hard.txt";
-       knopka = 3;
+       button = 3;
     }
-    int ohib;
+    int count_mistake;
     float time1;
-    time_t naz, konz; 
+    time_t begin, end; 
     FILE *input_file;
     char text_array[512];
     memset(text_array, 0, sizeof(text_array));
     input_file = FileOpen(Nfile);
-    int number_row = Rand_Row(input_file, text_array);
+    int number_row = RandRow(input_file, text_array);
     int i = FileCheck(input_file);
     rewind(input_file);
     FileRead(input_file, number_row, text_array, i);
-    TextOut(text_array, knopka);
-    naz = time(NULL);
-    ohib = InputTextOut(text_array);
-    konz = time(NULL);
-    time1 = difftime(konz, naz);
-    printf("ohib=%d  ",ohib);
-    record(ohib, time1);
+    TextOut(text_array, button);
+    begin = time(NULL);
+    count_mistake = InputTextOut(text_array);
+    end = time(NULL);
+    time1 = difftime(end, begin);
+    printf("count of mistake = %d  ",count_mistake);
+    record(count_mistake, time1);
     return time1;
 }
 

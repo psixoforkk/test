@@ -12,7 +12,7 @@ void FileRead(FILE* input_file, int output_line, char text_array[], int checkfil
         }
 }
 
-int Rand_Row(FILE* input_file, char text_array[]) {
+int RandRow(FILE* input_file, char text_array[]) {
 	int i = 0;
 	while (fgets(text_array, 512, input_file)) {
 		i++;
@@ -34,12 +34,12 @@ FILE* FileOpen(const char* file_name) {
 	return input_file;
 }
 
-void Offai(int color, char symbol) {
+void ColorBackGround(int color, char symbol) {
        printf("\E[%dm", color);
        printf("%c", symbol);
        printf("\e[0m");
 }
-int Sravnenie(char sym1, char sym2) {
+int Comparison(char sym1, char sym2) {
     int res = 0;
     if (sym1 == sym2) {
         res = 1;
@@ -51,25 +51,25 @@ int Sravnenie(char sym1, char sym2) {
 }
 int InputTextOut(const char text_array[]) {
         char sym;
-	int ohib=0;
+	int count_mistake=0;
         printf("\n ");
         //sym = include();
         for (long unsigned int i = 0; i < strlen(text_array) - 1;) 
         {
                 int flag = 0;
                 sym = include();
-                if (Sravnenie(sym, text_array[i])) {
+                if (Comparison(sym, text_array[i])) {
                         flag = 1;
-                        Offai(42, sym);
+                        ColorBackGround(42, sym);
                         i++;
                 }
                 else {
-                    Offai(41, sym);
+                    ColorBackGround(41, sym);
                     printf("\b");
-		    ohib++;
+		    count_mistake++;
                 }
                 if (sym == '0') {
-		    ohib--;
+		    count_mistake--;
                     break;
                 }
                 if ((sym == '.' || sym == '?' || sym == '!') && flag != 0) {
@@ -78,7 +78,7 @@ int InputTextOut(const char text_array[]) {
                 }
         }
         printf("\n");
-        return ohib;
+        return count_mistake;
 }
 
 int include()
@@ -139,9 +139,9 @@ void results (){
 	fclose(f);
 }
 
-void record (int ohib, float time){
+void record (int count_mistake, float time){
 	FILE *f;
 	f = fopen("record.txt", "a");
-	fprintf(f, "ohib = %d time = %f\n", ohib, time);
+	fprintf(f, "count of mistakes = %d time = %f\n", count_mistake, time);
 	fclose(f);
 }

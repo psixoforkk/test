@@ -12,3 +12,6 @@ ohib = 0 time = 0.000071
 ohib = 0 time = 0.000063
 ohib = 0 time = 5.000000
 ohib = 0 time = 9.000000
+count_mistake = 1 time = 4.000000
+count of mistakes = 0 time = 2.000000
+count of mistakes = 9 time = 5.000000
